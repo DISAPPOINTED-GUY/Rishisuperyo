@@ -1,6 +1,7 @@
 'use client';
 
 import React from 'react';
+import { motion } from 'framer-motion';
 import { FOUNDATIONS } from '@/data/timelineData';
 import { Network, Terminal, Cpu, Sparkles, Users, Layers, Briefcase, Compass, ShieldCheck } from 'lucide-react';
 
@@ -20,7 +21,13 @@ export const FoundationSection: React.FC = () => {
     <section id="foundations" className="relative py-28 px-4 sm:px-6 lg:px-8 border-t border-white/5 bg-[#07090E]">
       <div className="max-w-7xl mx-auto relative z-10">
         {/* Section Header */}
-        <div className="flex flex-col items-start space-y-3 mb-16">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.2 }}
+          transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+          className="flex flex-col items-start space-y-3 mb-16"
+        >
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-surface-raised border border-white/10 text-xs font-mono text-purple-400">
             <ShieldCheck className="w-3.5 h-3.5" />
             <span>CORE PILLARS</span>
@@ -31,15 +38,19 @@ export const FoundationSection: React.FC = () => {
           <p className="text-zinc-400 font-mono text-sm sm:text-base max-w-2xl leading-relaxed">
             The principles forged not in lecture halls, but through live network warfare, market dynamics, and building tools under pressure.
           </p>
-        </div>
+        </motion.div>
 
         {/* 8 Foundations Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           {FOUNDATIONS.map((f, index) => {
             const Icon = ICON_MAP[f.icon] || Cpu;
             return (
-              <div
+              <motion.div
                 key={f.id}
+                initial={{ opacity: 0, y: 25 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.15 }}
+                transition={{ duration: 0.5, delay: (index % 4) * 0.08, ease: [0.16, 1, 0.3, 1] }}
                 className="group p-6 rounded-2xl bg-surface border border-white/5 hover:border-purple-500/40 hover:bg-surface-raised transition-all duration-300 flex flex-col justify-between"
               >
                 <div className="space-y-4">
@@ -72,7 +83,7 @@ export const FoundationSection: React.FC = () => {
                   <span>FOUNDATION #{index + 1}</span>
                   <span className="group-hover:text-purple-400 transition-colors">ACTIVE</span>
                 </div>
-              </div>
+              </motion.div>
             );
           })}
         </div>

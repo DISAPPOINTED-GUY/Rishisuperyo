@@ -1,33 +1,21 @@
 'use client';
 
-import React, { useEffect, useState } from 'react';
+import React from 'react';
+import { motion, useScroll, useSpring } from 'framer-motion';
 
 export const TimelineProgress: React.FC = () => {
-  const [scrollProgress, setScrollProgress] = useState(0);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      const el = document.getElementById('timeline');
-      if (!el) return;
-
-      const rect = el.getBoundingClientRect();
-      const scrollHeight = el.offsetHeight - window.innerHeight;
-      if (scrollHeight <= 0) return;
-
-      const scrolled = -rect.top;
-      const progress = Math.min(Math.max(scrolled / scrollHeight, 0), 1);
-      setScrollProgress(progress);
-    };
-
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  const { scrollYProgress } = useScroll();
+  const scaleX = useSpring(scrollYProgress, {
+    stiffness: 120,
+    damping: 28,
+    restDelta: 0.001
+  });
 
   return (
-    <div className="fixed top-0 left-0 right-0 h-[2px] bg-white/5 z-50 pointer-events-none">
-      <div
-        className="h-full bg-gradient-to-r from-cyber-cyan via-cyber-turquoise to-cyber-violet transition-all duration-150 ease-out shadow-[0_0_8px_rgba(0,240,255,0.8)]"
-        style={{ width: `${scrollProgress * 100}%` }}
+    <div className="fixed top-0 left-0 right-0 h-[3px] bg-white/5 z-50 pointer-events-none">
+      <motion.div
+        className="h-full bg-gradient-to-r from-purple-500 via-fuchsia-500 via-cyber-cyan to-amber-300 origin-left shadow-[0_0_12px_rgba(168,85,247,0.9),0_0_20px_rgba(0,240,255,0.7)]"
+        style={{ scaleX }}
       />
     </div>
   );

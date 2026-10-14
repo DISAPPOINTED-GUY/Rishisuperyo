@@ -1,6 +1,7 @@
 'use client';
 
 import React from 'react';
+import { motion } from 'framer-motion';
 import { SKILL_CATEGORIES } from '@/data/timelineData';
 import { Code, Bot, Zap, Webhook, Globe, Palette, Brain, Search, Layout, TrendingUp, Users, Video, CheckCircle2 } from 'lucide-react';
 
@@ -24,7 +25,13 @@ export const SkillsSection: React.FC = () => {
     <section id="skills" className="relative py-28 px-4 sm:px-6 lg:px-8 border-t border-white/5 bg-[#05070B]">
       <div className="max-w-7xl mx-auto relative z-10">
         {/* Section Header */}
-        <div className="flex flex-col items-start space-y-4 mb-16">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.2 }}
+          transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+          className="flex flex-col items-start space-y-4 mb-16"
+        >
           <div className="flex flex-wrap items-center gap-3">
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-surface-raised border border-white/10 text-xs font-mono text-purple-400">
               <Code className="w-3.5 h-3.5" />
@@ -51,13 +58,17 @@ export const SkillsSection: React.FC = () => {
           <p className="text-zinc-400 font-mono text-sm sm:text-base max-w-2xl leading-relaxed">
             Battle-tested competencies derived directly from real software deployment, market competition, and system architecture. The items below represent only <span className="text-purple-300 font-semibold">15% of total capability</span>—advanced network operations, proprietary algorithms, and enterprise telemetry remain strictly redacted.
           </p>
-        </div>
+        </motion.div>
 
         {/* 3 Clusters Grid */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           {SKILL_CATEGORIES.map((cat, catIdx) => (
-            <div
+            <motion.div
               key={catIdx}
+              initial={{ opacity: 0, y: 35 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.15 }}
+              transition={{ duration: 0.6, delay: catIdx * 0.15, ease: [0.16, 1, 0.3, 1] }}
               className="p-8 rounded-2xl bg-surface border border-white/10 hover:border-purple-500/40 transition-all flex flex-col justify-between"
             >
               <div>
@@ -109,7 +120,7 @@ export const SkillsSection: React.FC = () => {
                 </span>
                 <span>Active 2026</span>
               </div>
-            </div>
+            </motion.div>
           ))}
         </div>
       </div>

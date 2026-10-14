@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect, useRef } from 'react';
 import Image from 'next/image';
+import { motion } from 'framer-motion';
 import { TIMELINE_ARCS } from '@/data/timelineData';
 import { CHARACTER_REGISTRY } from '@/config/characters';
 import { ConfidentialArc } from './ConfidentialArc';
@@ -96,7 +97,13 @@ export const TimelineSection: React.FC<TimelineSectionProps> = ({ onArcChange })
 
       {/* Section Header */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="mb-16 flex flex-col items-start space-y-4">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.15 }}
+          transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+          className="mb-16 flex flex-col items-start space-y-4"
+        >
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-surface-raised border border-purple-500/30 text-xs font-mono text-purple-300">
             <Activity className="w-3.5 h-3.5 animate-pulse text-purple-400" />
             <span>SCROLL-DRIVEN AUTOBIOGRAPHY</span>
@@ -150,7 +157,7 @@ export const TimelineSection: React.FC<TimelineSectionProps> = ({ onArcChange })
               DEV: DIDN'T EVEN START
             </span>
           </div>
-        </div>
+        </motion.div>
 
         {/* Master Staging Layout: Split Desktop Grid */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start relative">
@@ -171,6 +178,12 @@ export const TimelineSection: React.FC<TimelineSectionProps> = ({ onArcChange })
                     isArcActive ? 'opacity-100 scale-100' : 'opacity-40 hover:opacity-75 scale-[0.99]'
                   }`}
                 >
+                  <motion.div
+                    initial={{ opacity: 0, y: 35 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, amount: 0.1 }}
+                    transition={{ duration: 0.65, ease: [0.16, 1, 0.3, 1] }}
+                  >
                   {arc.isConfidential ? (
                     /* ARC 15: CLASSIFIED TERMINAL CHAPTER */
                     <ConfidentialArc isActive={isArcActive} />
@@ -359,13 +372,19 @@ export const TimelineSection: React.FC<TimelineSectionProps> = ({ onArcChange })
 
                     </div>
                   )}
+                  </motion.div>
                 </div>
               );
             })}
           </div>
 
           {/* RIGHT: Pinned Sticky Cinematic Character Stage (5 Columns, Desktop Only) */}
-          <div className="hidden lg:block lg:col-span-5 sticky top-28 self-start">
+          <motion.div
+            initial={{ opacity: 0, x: 20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8, delay: 0.3 }}
+            className="hidden lg:block lg:col-span-5 sticky top-28 self-start"
+          >
             <div className="p-8 rounded-3xl bg-surface/90 border border-white/10 backdrop-blur-xl relative overflow-hidden shadow-[0_20px_60px_rgba(0,0,0,0.8)]">
               
               {/* Top Telemetry Header */}
@@ -466,7 +485,7 @@ export const TimelineSection: React.FC<TimelineSectionProps> = ({ onArcChange })
               </div>
 
             </div>
-          </div>
+          </motion.div>
 
         </div>
       </div>

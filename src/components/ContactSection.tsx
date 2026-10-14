@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
+import { motion } from 'framer-motion';
 import { Mail, Send, Terminal, Shield, Check, Copy } from 'lucide-react';
 
 export const ContactSection: React.FC = () => {
@@ -16,27 +17,41 @@ export const ContactSection: React.FC = () => {
   return (
     <section id="contact" className="relative py-28 px-4 sm:px-6 lg:px-8 border-t border-white/5 bg-[#07090E]">
       <div className="max-w-4xl mx-auto relative z-10 text-center">
-        {/* Badge */}
-        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-surface-raised border border-white/10 text-xs font-mono text-purple-400 mb-4">
-          <Terminal className="w-3.5 h-3.5" />
-          <span>TRANSMISSION TERMINAL</span>
-        </div>
+        {/* Header Block with Motion */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.2 }}
+          transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+        >
+          {/* Badge */}
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-surface-raised border border-white/10 text-xs font-mono text-purple-400 mb-4">
+            <Terminal className="w-3.5 h-3.5" />
+            <span>TRANSMISSION TERMINAL</span>
+          </div>
 
-        <h2 className="text-3xl sm:text-5xl font-black font-display text-white tracking-tight mb-2">
-          INITIATE CONTACT
-        </h2>
+          <h2 className="text-3xl sm:text-5xl font-black font-display text-white tracking-tight mb-2">
+            INITIATE CONTACT
+          </h2>
 
-        {/* Slogan Spotlight */}
-        <div className="text-base sm:text-lg font-mono font-bold tracking-wider text-transparent bg-clip-text bg-gradient-to-r from-purple-400 via-pink-400 to-amber-300 uppercase mb-6">
-          "The Price Of Fate Haunts Everyone"
-        </div>
+          {/* Slogan Spotlight */}
+          <div className="text-base sm:text-lg font-mono font-bold tracking-wider text-transparent bg-clip-text bg-gradient-to-r from-purple-400 via-pink-400 to-amber-300 uppercase mb-6">
+            "The Price Of Fate Haunts Everyone"
+          </div>
 
-        <p className="text-zinc-400 font-mono text-sm sm:text-base max-w-xl mx-auto leading-relaxed mb-10">
-          Interested in discussing Armada Web OS, AI automation systems, or strategic digital ventures? Connect directly through verified channels.
-        </p>
+          <p className="text-zinc-400 font-mono text-sm sm:text-base max-w-xl mx-auto leading-relaxed mb-10">
+            Interested in discussing Armada Web OS, AI automation systems, or strategic digital ventures? Connect directly through verified channels.
+          </p>
+        </motion.div>
 
         {/* Contact Console Box */}
-        <div className="p-8 rounded-3xl bg-surface border border-white/10 max-w-2xl mx-auto shadow-[0_10px_40px_rgba(0,0,0,0.5)]">
+        <motion.div
+          initial={{ opacity: 0, y: 35 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.15 }}
+          transition={{ duration: 0.7, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
+          className="p-8 rounded-3xl bg-surface border border-white/10 max-w-2xl mx-auto shadow-[0_10px_40px_rgba(0,0,0,0.5)]"
+        >
           <div className="flex flex-col sm:flex-row items-center justify-between gap-4 p-4 rounded-xl bg-surface-raised border border-white/5 mb-6">
             <div className="flex items-center gap-3 text-left">
               <div className="w-10 h-10 rounded-lg bg-purple-500/15 border border-purple-500/30 text-purple-400 flex items-center justify-center">
@@ -106,7 +121,7 @@ export const ContactSection: React.FC = () => {
               </a>
             </div>
           </div>
-        </div>
+        </motion.div>
 
         {/* Under Development & Confidentiality Notice */}
         <div className="mt-10 max-w-2xl mx-auto p-4 rounded-2xl bg-red-950/20 border border-red-500/20 text-center font-mono text-xs space-y-1.5">

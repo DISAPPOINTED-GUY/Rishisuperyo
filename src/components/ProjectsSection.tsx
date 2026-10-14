@@ -1,6 +1,7 @@
 'use client';
 
 import React from 'react';
+import { motion } from 'framer-motion';
 import { PROJECTS } from '@/data/timelineData';
 import { Cpu, ExternalLink, Globe, Sparkles, Layers, Shield, Terminal, ArrowUpRight } from 'lucide-react';
 
@@ -12,7 +13,13 @@ export const ProjectsSection: React.FC = () => {
     <section id="projects" className="relative py-28 px-4 sm:px-6 lg:px-8 border-t border-white/5 bg-[#07090E]">
       <div className="max-w-7xl mx-auto relative z-10">
         {/* Section Header */}
-        <div className="flex flex-col items-start space-y-3 mb-16">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.2 }}
+          transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+          className="flex flex-col items-start space-y-3 mb-16"
+        >
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-surface-raised border border-white/10 text-xs font-mono text-purple-400">
             <Cpu className="w-3.5 h-3.5" />
             <span>PROJECT INITIATIVES</span>
@@ -23,10 +30,16 @@ export const ProjectsSection: React.FC = () => {
           <p className="text-zinc-400 font-mono text-sm sm:text-base max-w-2xl leading-relaxed">
             From grassroots automation tools powering thousands of active traders to the overarching flagship: Armada Web OS.
           </p>
-        </div>
+        </motion.div>
 
         {/* Flagship Hero Project: Armada Web OS */}
-        <div className="mb-12 p-8 sm:p-12 rounded-3xl bg-gradient-to-br from-surface-raised via-surface to-[#0A0E1A] border-2 border-purple-500/40 relative overflow-hidden shadow-[0_0_50px_rgba(168,85,247,0.2)] group">
+        <motion.div
+          initial={{ opacity: 0, y: 35 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.15 }}
+          transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+          className="mb-12 p-8 sm:p-12 rounded-3xl bg-gradient-to-br from-surface-raised via-surface to-[#0A0E1A] border-2 border-purple-500/40 relative overflow-hidden shadow-[0_0_50px_rgba(168,85,247,0.2)] group"
+        >
           {/* Ambient Glow */}
           <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-purple-600/20 rounded-full blur-[140px] pointer-events-none group-hover:bg-purple-600/30 transition-all duration-700" />
           
@@ -131,13 +144,17 @@ export const ProjectsSection: React.FC = () => {
               </a>
             </div>
           </div>
-        </div>
+        </motion.div>
 
         {/* Secondary Projects Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {secondaryProjects.map((project) => (
-            <div
+          {secondaryProjects.map((project, pIdx) => (
+            <motion.div
               key={project.id}
+              initial={{ opacity: 0, y: 25 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.15 }}
+              transition={{ duration: 0.5, delay: (pIdx % 3) * 0.1, ease: [0.16, 1, 0.3, 1] }}
               className="p-6 rounded-2xl bg-surface border border-white/5 hover:border-white/20 transition-all duration-300 flex flex-col justify-between group"
             >
               <div className="space-y-4">
@@ -205,7 +222,7 @@ export const ProjectsSection: React.FC = () => {
                   </span>
                 )}
               </div>
-            </div>
+            </motion.div>
           ))}
         </div>
       </div>

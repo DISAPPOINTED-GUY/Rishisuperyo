@@ -1,6 +1,7 @@
 'use client';
 
 import React from 'react';
+import { motion } from 'framer-motion';
 import { SOCIAL_LINKS } from '@/data/timelineData';
 import { Globe, ExternalLink, ShieldCheck } from 'lucide-react';
 import { YoutubeIcon, GithubIcon, TelegramIcon, InstagramIcon } from '@/components/icons/BrandIcons';
@@ -19,7 +20,13 @@ export const SocialLinks: React.FC = () => {
     <section id="socials" className="relative py-28 px-4 sm:px-6 lg:px-8 border-t border-white/5 bg-[#05070B]">
       <div className="max-w-7xl mx-auto relative z-10">
         {/* Section Header */}
-        <div className="flex flex-col items-start space-y-3 mb-16">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.2 }}
+          transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+          className="flex flex-col items-start space-y-3 mb-16"
+        >
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-surface-raised border border-white/10 text-xs font-mono text-purple-400">
             <Globe className="w-3.5 h-3.5" />
             <span>COMMUNICATION CHANNELS</span>
@@ -30,18 +37,22 @@ export const SocialLinks: React.FC = () => {
           <p className="text-zinc-400 font-mono text-sm sm:text-base max-w-2xl leading-relaxed">
             Direct public touchpoints. All links are centrally configured and verified against real handles.
           </p>
-        </div>
+        </motion.div>
 
         {/* Social Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-5">
           {SOCIAL_LINKS.map((item, index) => {
             const Icon = SOCIAL_ICONS[item.icon] || Globe;
             return (
-              <a
+              <motion.a
                 key={index}
                 href={item.url}
                 target="_blank"
                 rel="noopener noreferrer"
+                initial={{ opacity: 0, y: 25 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.15 }}
+                transition={{ duration: 0.5, delay: index * 0.08, ease: [0.16, 1, 0.3, 1] }}
                 className="p-6 rounded-2xl bg-surface border border-white/5 hover:border-purple-500/40 hover:bg-surface-raised transition-all duration-300 group flex flex-col justify-between"
               >
                 <div className="space-y-4">
@@ -73,7 +84,7 @@ export const SocialLinks: React.FC = () => {
                   </span>
                   <span className="text-purple-400 group-hover:underline">Connect</span>
                 </div>
-              </a>
+              </motion.a>
             );
           })}
         </div>

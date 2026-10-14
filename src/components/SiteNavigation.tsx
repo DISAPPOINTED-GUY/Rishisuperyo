@@ -52,10 +52,10 @@ export const SiteNavigation: React.FC<SiteNavigationProps> = ({
             <Terminal className="w-5 h-5" />
           </div>
           <div className="flex flex-col">
-            <span className="font-display font-black tracking-widest text-lg text-white group-hover:text-purple-400 transition-colors">
+            <span className="font-display font-black tracking-wider sm:tracking-widest text-base sm:text-lg text-white group-hover:text-purple-400 transition-colors">
               RISHISUPERYO
             </span>
-            <span className="text-[10px] tracking-wider font-mono text-zinc-400 uppercase">
+            <span className="text-[9px] sm:text-[10px] tracking-wider font-mono text-zinc-400 uppercase">
               Chronicles 2019–2026
             </span>
           </div>

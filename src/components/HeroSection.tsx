@@ -3,41 +3,47 @@
 import React from 'react';
 import Image from 'next/image';
 import { ArrowDown, Sparkles, Shield, Cpu, Terminal, ExternalLink } from 'lucide-react';
+import { motion } from 'framer-motion';
 import { CHARACTER_REGISTRY } from '@/config/characters';
 
 export const HeroSection: React.FC = () => {
   const currentHeroChar = CHARACTER_REGISTRY['arc-04-prime'] || CHARACTER_REGISTRY['arc-15-architect'];
 
   return (
-    <section className="relative min-h-screen flex flex-col justify-center items-center pt-24 pb-16 px-4 sm:px-6 lg:px-8 overflow-hidden">
+    <section className="relative min-h-screen flex flex-col justify-center items-center pt-24 pb-16 px-3 xs:px-4 sm:px-6 lg:px-8 overflow-hidden">
       {/* Background radial atmosphere */}
       <div className="absolute inset-0 cyber-grid opacity-30 pointer-events-none" />
       <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] bg-purple-600/20 rounded-full blur-[180px] pointer-events-none" />
 
       <div className="relative z-10 max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
         {/* Left Column: Monumental typography & Narrative Introduction */}
-        <div className="lg:col-span-7 flex flex-col items-start text-left space-y-6">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+          className="lg:col-span-7 flex flex-col items-start text-left space-y-6"
+        >
           {/* Top Status Capsule */}
-          <div className="inline-flex items-center gap-2.5 px-3 py-1.5 rounded-full bg-surface-raised/90 border border-purple-500/30 text-purple-300 text-xs font-mono tracking-wider shadow-[0_0_20px_rgba(168,85,247,0.2)]">
-            <span className="flex h-2 w-2 relative">
+          <div className="inline-flex items-center gap-2.5 px-3 py-1.5 rounded-full bg-surface-raised/90 border border-purple-500/30 text-purple-300 text-xs font-mono tracking-wider shadow-[0_0_20px_rgba(168,85,247,0.2)] max-w-full">
+            <span className="flex h-2 w-2 relative shrink-0">
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-purple-400 opacity-75"></span>
               <span className="relative inline-flex rounded-full h-2 w-2 bg-purple-400"></span>
             </span>
-            <span>CHRONICLES 2019 – 2026 // FROM THE ORIGIN TO THE ARCHITECT</span>
+            <span className="truncate text-[10px] sm:text-xs">CHRONICLES 2019 – 2026 // FROM ORIGIN TO ARCHITECT</span>
           </div>
 
-          {/* Main Title */}
-          <div className="space-y-3">
-            <h1 className="text-5xl sm:text-7xl lg:text-8xl font-black font-display tracking-tight text-white leading-none">
+          {/* Main Title - Calibrated with clamp for mobile screens */}
+          <div className="space-y-3 w-full">
+            <h1 className="text-[clamp(1.75rem,7.5vw,5.5rem)] xs:text-5xl sm:text-7xl lg:text-8xl font-black font-display tracking-tight text-white leading-none whitespace-nowrap sm:whitespace-normal overflow-visible">
               RISHI<span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 via-fuchsia-400 to-white">SUPERYO</span>
             </h1>
 
             {/* Official Slogan */}
-            <div className="text-sm sm:text-base lg:text-lg font-mono font-bold tracking-widest text-transparent bg-clip-text bg-gradient-to-r from-purple-400 via-pink-400 to-amber-300 uppercase flex items-center gap-2">
+            <div className="text-xs sm:text-base lg:text-lg font-mono font-bold tracking-wider sm:tracking-widest text-transparent bg-clip-text bg-gradient-to-r from-purple-400 via-pink-400 to-amber-300 uppercase flex items-center gap-2">
               <span>"The Price Of Fate Haunts Everyone"</span>
             </div>
 
-            <p className="text-base sm:text-lg lg:text-xl text-zinc-300 font-mono font-medium max-w-2xl leading-relaxed">
+            <p className="text-sm sm:text-lg lg:text-xl text-zinc-300 font-mono font-medium max-w-2xl leading-relaxed">
               An evolving timeline of code, creation, competition, and rebuilding.
             </p>
           </div>
@@ -130,10 +136,15 @@ export const HeroSection: React.FC = () => {
               <div className="text-[9px] font-mono text-zinc-600">Flagship Core</div>
             </div>
           </div>
-        </div>
+        </motion.div>
 
         {/* Right Column: Character Stage Showcase */}
-        <div className="lg:col-span-5 relative flex items-center justify-center">
+        <motion.div
+          initial={{ opacity: 0, scale: 0.95 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.8, delay: 0.25, ease: [0.16, 1, 0.3, 1] }}
+          className="lg:col-span-5 relative flex items-center justify-center"
+        >
           {/* Holographic backdrop disk */}
           <div className="relative w-full max-w-[420px] aspect-[3/4] flex items-center justify-center">
             {/* Energy rings */}
@@ -173,16 +184,25 @@ export const HeroSection: React.FC = () => {
               </div>
             </div>
           </div>
-        </div>
+        </motion.div>
       </div>
 
-      {/* Bottom Scroll Indicator */}
-      <div className="relative z-10 mt-12 flex flex-col items-center gap-2 text-zinc-400 text-xs font-mono">
+      {/* Bottom Scroll Indicator with Motion */}
+      <motion.div
+        initial={{ opacity: 0, y: -10 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.8, duration: 0.6 }}
+        className="relative z-10 mt-12 flex flex-col items-center gap-2 text-zinc-400 text-xs font-mono"
+      >
         <span className="tracking-widest uppercase text-[11px] text-zinc-400">Scroll to Witness Evolution</span>
         <div className="w-5 h-9 rounded-full border-2 border-white/20 flex items-start justify-center p-1">
-          <div className="w-1.5 h-2.5 rounded-full bg-cyber-cyan animate-bounce" />
+          <motion.div
+            animate={{ y: [0, 12, 0] }}
+            transition={{ repeat: Infinity, duration: 1.8, ease: 'easeInOut' }}
+            className="w-1.5 h-2.5 rounded-full bg-cyber-cyan"
+          />
         </div>
-      </div>
+      </motion.div>
     </section>
   );
 };

@@ -1,6 +1,7 @@
 'use client';
 
 import React from 'react';
+import { motion } from 'framer-motion';
 import { User, Terminal, Trophy, Bot, ShoppingCart, Brain, Layers, Sparkles } from 'lucide-react';
 import { YoutubeIcon } from '@/components/icons/BrandIcons';
 
@@ -57,7 +58,13 @@ export const AboutSection: React.FC = () => {
 
       <div className="max-w-7xl mx-auto relative z-10">
         {/* Section Header */}
-        <div className="flex flex-col items-start space-y-3 mb-16">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.2 }}
+          transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+          className="flex flex-col items-start space-y-3 mb-16"
+        >
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-surface-raised border border-white/10 text-xs font-mono text-cyber-cyan">
             <User className="w-3.5 h-3.5" />
             <span>NARRATIVE BIOGRAPHY</span>
@@ -68,12 +75,18 @@ export const AboutSection: React.FC = () => {
           <p className="text-zinc-400 font-mono text-sm sm:text-base max-w-3xl leading-relaxed">
             I am not a conventional resume with corporate certificates. I am a builder shaped by real digital trenches: trial by fire, device constraints, platform bans, market competition, and relentless rebuilding.
           </p>
-        </div>
+        </motion.div>
 
         {/* Narrative Split: Story + Evolution Threads */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
           {/* Left Narrative Pillar */}
-          <div className="lg:col-span-5 space-y-6">
+          <motion.div
+            initial={{ opacity: 0, x: -30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, amount: 0.15 }}
+            transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+            className="lg:col-span-5 space-y-6"
+          >
             <div className="p-8 rounded-2xl bg-surface border border-white/10 relative overflow-hidden">
               <div className="absolute top-0 right-0 w-32 h-32 bg-cyber-cyan/10 rounded-full blur-2xl pointer-events-none" />
               
@@ -105,15 +118,19 @@ export const AboutSection: React.FC = () => {
                 "Build what solves the bottleneck. Ship it before you feel ready. When systems fail or platforms pull the rug, calibrate without resentment and build a stronger architecture."
               </p>
             </div>
-          </div>
+          </motion.div>
 
           {/* Right Evolution Threads Grid */}
           <div className="lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-4">
             {evolutionThreads.map((thread, index) => {
               const Icon = thread.icon;
               return (
-                <div
+                <motion.div
                   key={index}
+                  initial={{ opacity: 0, y: 25 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, amount: 0.15 }}
+                  transition={{ duration: 0.5, delay: index * 0.08, ease: [0.16, 1, 0.3, 1] }}
                   className="p-6 rounded-xl bg-surface/70 border border-white/5 hover:border-white/20 transition-all group hover:bg-surface-raised/90 flex flex-col justify-between"
                 >
                   <div className="space-y-3">
@@ -140,7 +157,7 @@ export const AboutSection: React.FC = () => {
                     <span className="w-1.5 h-1.5 rounded-full" style={{ backgroundColor: thread.color }} />
                     <span>Evolutionary Vector</span>
                   </div>
-                </div>
+                </motion.div>
               );
             })}
           </div>
